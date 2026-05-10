@@ -1,0 +1,63 @@
+<app-navbar></app-navbar>
+
+<div class="home-container">
+  @if (isLoading) {
+    <p class="loading">Chargement...</p>
+  } @else {
+    <div class="hero">
+      <h1>Bienvenue sur EduConnect</h1>
+      <div class="search-bar">
+        <input
+          type="text"
+          [(ngModel)]="searchQuery"
+          placeholder="Rechercher un cours..."
+        />
+        <button (click)="onSearch()">🔍</button>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Mes cours en cours</h2>
+      @if (coursesInProgress.length === 0) {
+        <p class="empty">Aucun cours en cours.
+          <a routerLink="/student/catalogue">Parcourir le catalogue</a>
+        </p>
+      } @else {
+        <div class="courses-grid">
+          @for (course of coursesInProgress; track course.id) {
+            <div class="course-card">
+              <div class="course-icon">📚</div>
+              <h3>{{ course.titre }}</h3>
+              <p>{{ course.enseignant }}</p>
+              <div class="progress-bar">
+                <div class="progress" style="width: 50%"></div>
+              </div>
+              <a [routerLink]="['/student/course', course.id]"
+                 class="btn-continuer">Continuer</a>
+            </div>
+          }
+        </div>
+      }
+    </div>
+
+    <div class="section">
+      <h2>Cours recommandés</h2>
+      @if (coursesRecommanded.length === 0) {
+        <p class="empty">Aucun cours disponible.</p>
+      } @else {
+        <div class="courses-grid">
+          @for (course of coursesRecommanded; track course.id) {
+            <div class="course-card">
+              <div class="course-icon">🎓</div>
+              <h3>{{ course.titre }}</h3>
+              <p>{{ course.enseignant }}</p>
+              <p class="note">⭐ {{ course.note }}/5</p>
+              <a [routerLink]="['/student/course', course.id]"
+                 class="btn-voir">Voir le cours</a>
+            </div>
+          }
+        </div>
+      }
+    </div>
+  }
+</div>

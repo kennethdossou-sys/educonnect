@@ -1,0 +1,58 @@
+<app-navbar></app-navbar>
+
+<div class="detail-container">
+  @if (isLoading) {
+    <p class="loading">Chargement...</p>
+  } @else if (course) {
+    <div class="course-hero">
+      <div class="course-hero-info">
+        <h1>{{ course.titre }}</h1>
+        <p class="description">{{ course.description }}</p>
+        <div class="meta">
+          <span>👤 {{ course.enseignant }}</span>
+          <span>⏱ {{ course.duree }}</span>
+          <span>⭐ {{ course.note }}/5</span>
+        </div>
+        <div class="actions">
+          <a [routerLink]="['/student/course', course.id, 'player']"
+             class="btn-start">▶ Commencer le cours</a>
+          @if (!isEnrolled) {
+            <button (click)="enroll()" class="btn-enroll">
+              S'inscrire au cours
+            </button>
+          } @else {
+            <span class="enrolled">✅ Inscrit</span>
+          }
+        </div>
+      </div>
+      <div class="course-hero-image">🎓</div>
+    </div>
+
+    <div class="content-grid">
+      <div class="programme">
+        <h2>Programme du cours</h2>
+        @for (chapitre of course.chapitres; track chapitre.id) {
+          <div class="chapitre-item">
+            <span>▶</span>
+            <div>
+              <p class="chapitre-titre">{{ chapitre.titre }}</p>
+              <p class="chapitre-duree">{{ chapitre.duree }}</p>
+            </div>
+          </div>
+        }
+      </div>
+
+      <div class="inclus">
+        <h2>Ce cours inclut</h2>
+        <ul>
+          <li>✅ {{ course.duree }} de vidéo</li>
+          <li>✅ {{ course.chapitres.length }} chapitres détaillés</li>
+          <li>✅ Quiz et exercices</li>
+          <li>✅ Accès illimité</li>
+        </ul>
+      </div>
+    </div>
+  } @else {
+    <p class="empty">Cours introuvable.</p>
+  }
+</div>

@@ -1,0 +1,22 @@
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { CoursePlayerComponent } from './course-player.component';
+
+describe('CoursePlayerComponent', () => {
+  let component: CoursePlayerComponent;
+  let fixture: ComponentFixture<CoursePlayerComponent>;
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [CoursePlayerComponent],
+    }).compileComponents();
+
+    fixture = TestBed.createComponent(CoursePlayerComponent);
+    component = fixture.componentInstance;
+    await fixture.whenStable();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});

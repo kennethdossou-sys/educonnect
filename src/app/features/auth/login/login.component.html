@@ -1,0 +1,39 @@
+<div class="login-container">
+  <div class="login-card">
+    <div class="logo">
+      <span>🎓</span>
+      <h1>EduConnect</h1>
+      <p>Plateforme d'apprentissage</p>
+    </div>
+
+    <div class="tabs">
+      <a routerLink="/auth/login" class="tab active">Connexion</a>
+      <a routerLink="/auth/register" class="tab">Inscription</a>
+    </div>
+
+    <div class="form">
+      <div class="field">
+        <label>Email</label>
+        <input type="email" [(ngModel)]="email"
+               placeholder="exemple@email.com"/>
+      </div>
+      <div class="field">
+        <label>Mot de passe</label>
+        <input type="password" [(ngModel)]="password"
+               placeholder="••••••••"/>
+      </div>
+
+      <a routerLink="/auth/forgot-password" class="forgot-link">
+        Mot de passe oublié ?
+      </a>
+
+      @if (errorMessage) {
+        <p class="error">{{ errorMessage }}</p>
+      }
+
+      <button (click)="onLogin()" [disabled]="isLoading">
+        {{ isLoading ? 'Connexion...' : 'Se connecter' }}
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,82 @@
+<app-navbar></app-navbar>
+
+<div class="assignment-container">
+  <a routerLink="/student/dashboard" class="btn-back">
+    ← Retour au tableau de bord
+  </a>
+
+  @if (isLoading) {
+    <p class="loading">Chargement...</p>
+  } @else if (isSubmitted) {
+    <div class="success-card">
+      <div class="success-icon">✅</div>
+      <h2>Devoir soumis avec succès !</h2>
+      <p>Votre enseignant recevra votre travail.</p>
+      <a routerLink="/student/dashboard" class="btn-retour">
+        Retour au tableau de bord
+      </a>
+    </div>
+  } @else if (assignment) {
+    <div class="assignment-card">
+      <div class="assignment-header">
+        <div>
+          <h1>{{ assignment.titre }}</h1>
+          <p class="course-name">{{ assignment.courseId }}</p>
+        </div>
+        <span class="echeance">
+          📅 Échéance: {{ assignment.dateLimit | date:'dd/MM/yyyy' }}
+        </span>
+      </div>
+
+      <div class="instructions">
+        <h2>Instructions du devoir</h2>
+        <p>{{ assignment.instructions }}</p>
+      </div>
+
+      <div class="submit-section">
+        <h2>Soumettre votre travail</h2>
+
+        <div class="upload-zone" (click)="fileInput.click()">
+          <input 
+            #fileInput
+            type="file" 
+            hidden
+            accept=".zip,.rar,.pdf"
+            (change)="onFileChange($event)"
+          />
+          @if (fichier) {
+            <p class="file-selected">📎 {{ fichier.name }}</p>
+          } @else {
+            <div class="upload-placeholder">
+              <span>⬆️</span>
+              <p>Cliquez pour uploader votre fichier</p>
+              <p class="formats">Formats acceptés: .zip, .rar, .pdf (Max 50MB)</p>
+            </div>
+          }
+        </div>
+
+        <div class="field">
+          <label>Commentaires (optionnel)</label>
+          <textarea 
+            [(ngModel)]="commentaire"
+            placeholder="Ajoutez des commentaires pour votre enseignant..."
+            rows="4">
+          </textarea>
+        </div>
+
+        <p class="mention">
+          En soumettant ce devoir, je certifie qu'il s'agit de mon propre travail.
+        </p>
+
+        <button 
+          (click)="onSubmit()"
+          [disabled]="!fichier || isSubmitting"
+          class="btn-submit">
+          {{ isSubmitting ? 'Soumission...' : 'Soumettre le devoir' }}
+        </button>
+      </div>
+    </div>
+  } @else {
+    <p class="empty">Devoir introuvable.</p>
+  }
+</div>

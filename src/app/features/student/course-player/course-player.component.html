@@ -1,0 +1,75 @@
+<div class="player-wrapper">
+  <div class="player-header">
+    <a routerLink="/student/home" class="btn-back">← Retour</a>
+    <div class="player-brand">
+      <span>🎓</span>
+      <span>{{ course?.titre }}</span>
+    </div>
+    <span class="progression-text">Progression: {{ progression }}%</span>
+  </div>
+
+  <div class="player-body">
+    <div class="video-section">
+
+      <div class="video-wrapper">
+        @if (currentChapitre?.videoUrl) {
+          <iframe
+            [src]="getEmbedUrl(currentChapitre!.videoUrl) | safe"
+            width="100%"
+            height="100%"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; 
+                   encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+          </iframe>
+        } @else {
+          <div class="video-placeholder">
+            <span>▶</span>
+            <p>Aucune vidéo disponible</p>
+          </div>
+        }
+      </div>
+
+      @if (currentChapitre) {
+        <div class="chapitre-description">
+          <h3>{{ currentChapitre.titre }}</h3>
+          <div class="progress-bar">
+            <div class="progress" [style.width]="progression + '%'"></div>
+          </div>
+          <div class="actions">
+            @if (!isLastChapitre()) {
+              <button (click)="nextChapitre()" class="btn-next">
+                Chapitre suivant →
+              </button>
+            } @else {
+              <a [routerLink]="['/student/quiz', course?.id]" 
+                 class="btn-next btn-quiz">
+                🎯 Passer le quiz
+              </a>
+            }
+          </div>
+        </div>
+      }
+    </div>
+
+    <aside class="sidebar">
+      <h3>Chapitres du cours</h3>
+      @if (course?.chapitres) {
+        @for (chapitre of course!.chapitres; track chapitre.id; let i = $index) {
+          <div
+            class="chapitre-item"
+            [class.active]="i === currentIndex"
+            (click)="selectChapitre(i)">
+            <span class="chapitre-icon">
+              {{ i < currentIndex ? '✅' : '▶' }}
+            </span>
+            <div>
+              <p class="chapitre-titre">{{ chapitre.titre }}</p>
+              <p class="chapitre-duree">{{ chapitre.duree }}</p>
+            </div>
+          </div>
+        }
+      }
+    </aside>
+  </div>
+</div>

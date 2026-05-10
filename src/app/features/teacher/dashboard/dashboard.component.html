@@ -1,0 +1,63 @@
+<app-navbar></app-navbar>
+
+<div class="dashboard-container">
+  <div class="dashboard-header">
+    <h1>Dashboard Enseignant</h1>
+    <a routerLink="/teacher/create-course" class="btn-create">
+      + Créer un cours
+    </a>
+  </div>
+
+  <div class="stats-grid">
+    <div class="stat-card">
+      <span class="stat-icon">📚</span>
+      <p class="stat-value">{{ stats.totalCours }}</p>
+      <p class="stat-label">Cours créés</p>
+    </div>
+    <div class="stat-card">
+      <span class="stat-icon">👥</span>
+      <p class="stat-value">{{ stats.totalEtudiants }}</p>
+      <p class="stat-label">Étudiants inscrits</p>
+    </div>
+    <div class="stat-card">
+      <span class="stat-icon">📄</span>
+      <p class="stat-value">{{ stats.devoirsACorriger }}</p>
+      <p class="stat-label">Devoirs à corriger</p>
+    </div>
+    <div class="stat-card">
+      <span class="stat-icon">⭐</span>
+      <p class="stat-value">{{ stats.noteMoyenne | number:'1.1-1' }}</p>
+      <p class="stat-label">Note moyenne</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Mes cours</h2>
+    @if (courses.length === 0) {
+      <p class="empty">Aucun cours créé.
+        <a routerLink="/teacher/create-course">Créer votre premier cours</a>
+      </p>
+    } @else {
+      <div class="courses-grid">
+        @for (course of courses; track course.id) {
+          <div class="course-card">
+            <div class="course-thumbnail">🎓</div>
+            <div class="course-info">
+              <h3>{{ course.titre }}</h3>
+              <div class="course-meta">
+                <span>👥 Étudiants inscrits</span>
+                <span>⭐ {{ course.note }}/5</span>
+              </div>
+              <div class="course-actions">
+                <a [routerLink]="['/teacher/course', course.id]"
+                   class="btn-gerer">Gérer le cours</a>
+                <button (click)="deleteCourse(course.id)"
+                        class="btn-delete">🗑 Supprimer</button>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+    }
+  </div>
+</div>

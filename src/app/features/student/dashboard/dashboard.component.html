@@ -1,0 +1,86 @@
+<app-navbar></app-navbar>
+
+<div class="dashboard-container">
+  <h1>Mon tableau de bord</h1>
+
+  <div class="section">
+    <h2>Cours en cours</h2>
+    @if (coursesInProgress.length === 0) {
+      <p class="empty">Aucun cours en cours.</p>
+    } @else {
+      <div class="courses-grid">
+        @for (course of coursesInProgress; track course.id) {
+          <div class="course-card">
+            <div class="course-icon">📚</div>
+            <h3>{{ course.titre }}</h3>
+            <p>{{ course.progression }}%</p>
+            <div class="progress-bar">
+              <div class="progress" 
+                   [style.width]="course.progression + '%'">
+              </div>
+            </div>
+            <a [routerLink]="['/student/course', course.id, 'player']"
+               class="btn-continuer">Continuer</a>
+          </div>
+        }
+      </div>
+    }
+  </div>
+
+  <div class="bottom-grid">
+    <div class="section">
+      <h2>Cours terminés</h2>
+      @if (CoursesFinishes.length === 0) {
+        <p class="empty">Aucun cours terminé.</p>
+      } @else {
+        @for (course of CoursesFinishes; track course.id) {
+          <div class="termine-item">
+            <span>🏆</span>
+            <div>
+              <p class="titre">{{ course.titre }}</p>
+              <p class="score">{{ course.score }}%</p>
+            </div>
+          </div>
+        }
+      }
+    </div>
+
+    <div class="section">
+      <h2>Résultats des quiz</h2>
+      @if (resultatsQuiz.length === 0) {
+        <p class="empty">Aucun quiz passé.</p>
+      } @else {
+        @for (quiz of resultatsQuiz; track quiz.id) {
+          <div class="quiz-item">
+            <p class="titre">{{ quiz.titre }}</p>
+            <div class="progress-bar">
+              <div class="progress success" 
+                   [style.width]="quiz.score + '%'">
+              </div>
+            </div>
+            <p class="score">{{ quiz.score }}/100</p>
+          </div>
+        }
+      }
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Devoirs à rendre</h2>
+    @if (devoirsARendre.length === 0) {
+      <p class="empty">Aucun devoir à rendre.</p>
+    } @else {
+      @for (devoir of devoirsARendre; track devoir.id) {
+        <div class="devoir-item">
+          <span>📄</span>
+          <div>
+            <p class="titre">{{ devoir.titre }}</p>
+            <p class="echeance">Échéance: {{ devoir.dateLimit }}</p>
+          </div>
+          <a [routerLink]="['/student/assignment', devoir.id]"
+             class="btn-continuer">Commencer</a>
+        </div>
+      }
+    }
+  </div>
+</div>

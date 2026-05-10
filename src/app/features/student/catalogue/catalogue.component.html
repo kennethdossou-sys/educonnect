@@ -1,0 +1,65 @@
+<app-navbar></app-navbar>
+
+<div class="catalogue-container">
+  <h1>Catalogue des cours</h1>
+
+  <div class="catalogue-layout">
+    <aside class="filters">
+      <div class="filter-group">
+        <h3>Catégorie</h3>
+        @for (cat of categories; track cat) {
+          <label class="filter-option">
+            <input 
+              type="radio" 
+              [(ngModel)]="selectedCategorie" 
+              [value]="cat"
+              (change)="filterCourses()"
+            />
+            {{ cat }}
+          </label>
+        }
+      </div>
+
+      <div class="filter-group">
+        <h3>Niveau</h3>
+        @for (niveau of niveaux; track niveau) {
+          <label class="filter-option">
+            <input 
+              type="radio" 
+              [(ngModel)]="selectedNiveau" 
+              [value]="niveau"
+              (change)="filterCourses()"
+            />
+            {{ niveau }}
+          </label>
+        }
+      </div>
+    </aside>
+
+    <div class="courses-grid">
+      @if (filteredCourses.length === 0) {
+        <p class="empty">Aucun cours trouvé.</p>
+      } @else {
+        @for (course of filteredCourses; track course.id) {
+          <div class="course-card">
+            <div class="course-thumbnail">🎓</div>
+            <div class="course-info">
+              <h3>{{ course.titre }}</h3>
+              <p class="enseignant">{{ course.enseignant }}</p>
+              <div class="course-meta">
+                <span>⏱ {{ course.duree }}</span>
+                <span>⭐ {{ course.note }}</span>
+              </div>
+              <div class="course-tags">
+                <span class="tag">{{ course.categorie }}</span>
+                <span class="tag">{{ course.niveau }}</span>
+              </div>
+              <a [routerLink]="['/student/course', course.id]" 
+                 class="btn-voir">Voir le cours</a>
+            </div>
+          </div>
+        }
+      }
+    </div>
+  </div>
+</div>

@@ -1,0 +1,23 @@
+<nav class="navbar">
+  <div class="navbar-brand">
+    <span>🎓</span>
+    <span class="brand-name">EduConnect</span>
+  </div>
+
+  <div class="navbar-links">
+    @if (role === 'etudiant') {
+      <a routerLink="/student/home" routerLinkActive="active">Accueil</a>
+      <a routerLink="/student/catalogue" routerLinkActive="active">Catalogue</a>
+      <a routerLink="/student/dashboard" routerLinkActive="active">Mes cours</a>
+    }
+
+    @if (role === 'enseignant') {
+      <a routerLink="/teacher/dashboard" routerLinkActive="active">Tableau de bord</a>
+      <a routerLink="/teacher/create-course" routerLinkActive="active">Créer un cours</a>
+    }
+  </div>
+
+  <div class="navbar-actions">
+    <button (click)="logout()" class="btn-logout">Déconnexion</button>
+  </div>
+</nav>

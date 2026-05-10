@@ -1,0 +1,143 @@
+.detail-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.loading, .empty {
+  text-align: center;
+  color: #666;
+  margin-top: 3rem;
+}
+
+.course-hero {
+  background: linear-gradient(135deg, #1a73e8, #0d47a1);
+  border-radius: 16px;
+  padding: 2.5rem;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.course-hero-info {
+  flex: 1;
+}
+
+.course-hero-info h1 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+.description {
+  opacity: 0.9;
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.meta {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+.actions {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.btn-start {
+  padding: 0.75rem 1.5rem;
+  background: white;
+  color: #1a73e8;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.btn-start:hover {
+  background: #f0f7ff;
+}
+
+.btn-enroll {
+  padding: 0.75rem 1.5rem;
+  background: transparent;
+  color: white;
+  border: 2px solid white;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-enroll:hover {
+  background: rgba(255,255,255,0.1);
+}
+
+.enrolled {
+  font-weight: 500;
+  opacity: 0.9;
+}
+
+.course-hero-image {
+  font-size: 6rem;
+  opacity: 0.8;
+}
+
+.content-grid {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 2rem;
+}
+
+.programme, .inclus {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.programme h2, .inclus h2 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #1a1a1a;
+}
+
+.chapitre-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid #f3f4f6;
+  color: #555;
+}
+
+.chapitre-titre {
+  font-weight: 500;
+  font-size: 0.9rem;
+  color: #1a1a1a;
+}
+
+.chapitre-duree {
+  font-size: 0.8rem;
+  color: #888;
+}
+
+.inclus ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.inclus li {
+  font-size: 0.9rem;
+  color: #444;
+}

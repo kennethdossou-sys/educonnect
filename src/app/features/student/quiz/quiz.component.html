@@ -1,0 +1,66 @@
+<app-navbar></app-navbar>
+
+<div class="quiz-container">
+  @if (isLoading) {
+    <p class="loading">Chargement du quiz...</p>
+  } @else if (isFinished) {
+    <div class="result-card">
+      <div class="result-icon">🏆</div>
+      <h2>Quiz terminé !</h2>
+      <p class="result-score">
+        {{ score }} / {{ quiz?.questions?.length }}
+      </p>
+      <div class="progress-bar">
+        <div class="progress success"
+             [style.width]="(score / (quiz?.questions?.length || 1)) * 100 + '%'">
+        </div>
+      </div>
+      <p class="result-percent">
+        {{ (score / (quiz?.questions?.length || 1)) * 100 | number:'1.0-0' }}%
+      </p>
+      @if ((score / (quiz?.questions?.length || 1)) * 100 >= 50) {
+        <p class="result-message success-msg">Félicitations ! 🎉</p>
+      } @else {
+        <p class="result-message fail-msg">Réessayez pour améliorer votre score !</p>
+      }
+      <a routerLink="/student/dashboard" class="btn-retour">
+        Retour au tableau de bord
+      </a>
+    </div>
+  } @else if (currentQuestion) {
+    <div class="quiz-card">
+      <div class="quiz-header">
+        <h2>Quiz</h2>
+        <span>Question {{ currentIndex + 1 }}/{{ quiz?.questions?.length }}</span>
+      </div>
+
+      <div class="progress-bar">
+        <div class="progress" [style.width]="progression + '%'"></div>
+      </div>
+
+      <div class="question">
+        <h3>{{ currentQuestion.texte }}</h3>
+        <div class="choix-list">
+          @for (choix of currentQuestion.choix; track choix; let i = $index) {
+            <div
+              class="choix-item"
+              [class.selected]="selectedReponse === i"
+              (click)="selectReponse(i)">
+              {{ choix }}
+            </div>
+          }
+        </div>
+      </div>
+
+      <button
+        (click)="valider()"
+        [disabled]="selectedReponse === null"
+        class="btn-valider">
+        {{ currentIndex < (quiz?.questions?.length || 0) - 1 
+           ? 'Question suivante' : 'Terminer le quiz' }}
+      </button>
+    </div>
+  } @else {
+    <p class="empty">Aucun quiz disponible.</p>
+  }
+</div>

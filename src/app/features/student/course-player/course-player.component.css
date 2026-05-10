@@ -1,0 +1,187 @@
+.player-wrapper {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #0f172a;
+  color: white;
+}
+
+.player-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  background: #1e293b;
+  border-bottom: 1px solid #334155;
+}
+
+.btn-back {
+  color: #94a3b8;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.2s;
+}
+
+.btn-back:hover {
+  color: white;
+}
+
+.player-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.progression-text {
+  font-size: 0.875rem;
+  color: #94a3b8;
+}
+
+.player-body {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  flex: 1;
+  overflow: hidden;
+}
+
+.video-section {
+  padding: 2rem;
+  overflow-y: auto;
+}
+
+.video-wrapper {
+  background: #1e293b;
+  border-radius: 12px;
+  height: 360px;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+}
+
+.video-wrapper iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.video-placeholder {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  color: #94a3b8;
+}
+
+.video-placeholder span {
+  font-size: 4rem;
+  color: #1a73e8;
+}
+
+.chapitre-description {
+  background: #1e293b;
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+
+.chapitre-description h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.progress-bar {
+  background: #334155;
+  border-radius: 99px;
+  height: 6px;
+  margin-bottom: 1.5rem;
+}
+
+.progress {
+  background: #1a73e8;
+  border-radius: 99px;
+  height: 100%;
+  transition: width 0.3s;
+}
+
+.actions {
+  margin-top: 1rem;
+  display: flex;
+  gap: 1rem;
+}
+
+.btn-next {
+  padding: 0.75rem 1.5rem;
+  background: #1a73e8;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn-next:hover {
+  background: #0d47a1;
+}
+
+.btn-quiz {
+  background: #22c55e;
+}
+
+.btn-quiz:hover {
+  background: #16a34a;
+}
+
+.sidebar {
+  background: #1e293b;
+  border-left: 1px solid #334155;
+  padding: 1.5rem;
+  overflow-y: auto;
+}
+
+.sidebar h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #e2e8f0;
+}
+
+.chapitre-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s;
+  margin-bottom: 0.5rem;
+}
+
+.chapitre-item:hover {
+  background: #334155;
+}
+
+.chapitre-item.active {
+  background: #1a73e8;
+}
+
+.chapitre-icon {
+  font-size: 0.875rem;
+}
+
+.chapitre-titre {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #e2e8f0;
+}
+
+.chapitre-duree {
+  font-size: 0.75rem;
+  color: #94a3b8;
+  margin-top: 0.2rem;
+}

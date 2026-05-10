@@ -1,0 +1,61 @@
+<div class="register-container">
+  <div class="register-card">
+    <div class="logo">
+      <span>🎓</span>
+      <h1>EduConnect</h1>
+      <p>Plateforme d'apprentissage</p>
+    </div>
+
+    <div class="tabs">
+      <a routerLink="/auth/login" class="tab">Connexion</a>
+      <a routerLink="/auth/register" class="tab active">Inscription</a>
+    </div>
+
+    <div class="form">
+      <div class="field">
+        <label>Prénom</label>
+        <input type="text" [(ngModel)]="prenom" 
+               placeholder="Votre prénom"/>
+      </div>
+      <div class="field">
+        <label>Nom</label>
+        <input type="text" [(ngModel)]="nom" 
+               placeholder="Votre nom"/>
+      </div>
+      <div class="field">
+        <label>Email</label>
+        <input type="email" [(ngModel)]="email" 
+               placeholder="exemple@email.com"/>
+      </div>
+      <div class="field">
+        <label>Mot de passe</label>
+        <input type="password" [(ngModel)]="password" 
+               placeholder="••••••••"/>
+      </div>
+
+      <div class="role-selector">
+        <label>Je suis</label>
+        <div class="roles">
+          <label class="role-option">
+            <input type="radio" [(ngModel)]="role" 
+                   value="etudiant"/>
+            Étudiant
+          </label>
+          <label class="role-option">
+            <input type="radio" [(ngModel)]="role" 
+                   value="enseignant"/>
+            Enseignant
+          </label>
+        </div>
+      </div>
+
+      @if (errorMessage) {
+        <p class="error">{{ errorMessage }}</p>
+      }
+
+      <button (click)="onRegister()" [disabled]="isLoading">
+        {{ isLoading ? 'Inscription...' : 'S\'inscrire' }}
+      </button>
+    </div>
+  </div>
+</div>

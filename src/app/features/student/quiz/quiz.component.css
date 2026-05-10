@@ -1,0 +1,170 @@
+.quiz-container {
+  max-width: 700px;
+  margin: 2rem auto;
+  padding: 1rem;
+}
+
+.loading, .empty {
+  text-align: center;
+  color: #666;
+  margin-top: 3rem;
+}
+
+.quiz-card, .result-card {
+  background: white;
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+}
+
+.quiz-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.quiz-header h2 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.quiz-header span {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.progress-bar {
+  background: #e5e7eb;
+  border-radius: 99px;
+  height: 8px;
+  margin-bottom: 2rem;
+}
+
+.progress {
+  background: #1a73e8;
+  border-radius: 99px;
+  height: 100%;
+  transition: width 0.3s;
+}
+
+.progress.success {
+  background: #22c55e;
+}
+
+.question h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-bottom: 1.5rem;
+}
+
+.choix-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+}
+
+.choix-item {
+  padding: 1rem;
+  border: 2px solid #e5e7eb;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  color: #374151;
+  transition: all 0.2s;
+}
+
+.choix-item:hover {
+  border-color: #1a73e8;
+  background: #f0f7ff;
+}
+
+.choix-item.selected {
+  border-color: #1a73e8;
+  background: #f0f7ff;
+  color: #1a73e8;
+  font-weight: 500;
+}
+
+.btn-valider {
+  width: 100%;
+  padding: 0.875rem;
+  background: #1a73e8;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-valider:hover {
+  background: #0d47a1;
+}
+
+.btn-valider:disabled {
+  background: #93c5fd;
+  cursor: not-allowed;
+}
+
+.result-card {
+  text-align: center;
+}
+
+.result-icon {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+}
+
+.result-card h2 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 1rem;
+}
+
+.result-score {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #1a73e8;
+  margin-bottom: 1rem;
+}
+
+.result-percent {
+  font-size: 1.2rem;
+  color: #666;
+  margin-bottom: 1rem;
+}
+
+.result-message {
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+}
+
+.success-msg {
+  color: #22c55e;
+}
+
+.fail-msg {
+  color: #ef4444;
+}
+
+.btn-retour {
+  display: inline-block;
+  padding: 0.875rem 2rem;
+  background: #1a73e8;
+  color: white;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+
+.btn-retour:hover {
+  background: #0d47a1;
+}

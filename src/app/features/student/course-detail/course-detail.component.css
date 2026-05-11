@@ -6,42 +6,73 @@
 
 .loading, .empty {
   text-align: center;
-  color: #666;
+  color: #6b7280;
   margin-top: 3rem;
 }
 
 .course-hero {
   background: linear-gradient(135deg, #1a73e8, #0d47a1);
-  border-radius: 16px;
-  padding: 2.5rem;
+  border-radius: 20px;
+  padding: 3rem;
   color: white;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
+  box-shadow: 0 20px 60px rgba(26, 115, 232, 0.25);
+  position: relative;
+  overflow: hidden;
+}
+
+.course-hero::before {
+  content: '';
+  position: absolute;
+  top: -30%;
+  right: -10%;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+  border-radius: 50%;
 }
 
 .course-hero-info {
   flex: 1;
+  position: relative;
+  z-index: 1;
 }
 
 .course-hero-info h1 {
-  font-size: 1.8rem;
+  font-size: 2.2rem;
   margin-bottom: 1rem;
+  font-weight: 700;
+  letter-spacing: -1px;
+  line-height: 1.2;
 }
 
 .description {
-  opacity: 0.9;
-  margin-bottom: 1rem;
+  opacity: 0.95;
+  margin-bottom: 1.5rem;
   line-height: 1.6;
+  font-size: 1.05rem;
 }
 
 .meta {
   display: flex;
   gap: 1.5rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
   font-size: 0.9rem;
-  opacity: 0.9;
+  opacity: 0.95;
+  flex-wrap: wrap;
+}
+
+.meta span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.8rem;
+  background: rgba(255,255,255,0.15);
+  border-radius: 8px;
+  backdrop-filter: blur(10px);
 }
 
 .actions {
@@ -51,82 +82,98 @@
 }
 
 .btn-start {
-  padding: 0.75rem 1.5rem;
+  padding: 0.9rem 2rem;
   background: white;
   color: #1a73e8;
-  border-radius: 8px;
+  border-radius: 12px;
   text-decoration: none;
-  font-weight: 600;
+  font-weight: 700;
   transition: all 0.2s;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
 .btn-start:hover {
-  background: #f0f7ff;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
 }
 
 .btn-enroll {
-  padding: 0.75rem 1.5rem;
+  padding: 0.9rem 2rem;
   background: transparent;
   color: white;
   border: 2px solid white;
-  border-radius: 8px;
+  border-radius: 12px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s;
 }
 
 .btn-enroll:hover {
-  background: rgba(255,255,255,0.1);
+  background: rgba(255,255,255,0.15);
+  transform: translateY(-2px);
 }
 
 .enrolled {
-  font-weight: 500;
-  opacity: 0.9;
+  font-weight: 600;
+  background: rgba(255,255,255,0.2);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  backdrop-filter: blur(10px);
 }
 
 .course-hero-image {
   font-size: 6rem;
-  opacity: 0.8;
+  opacity: 0.9;
+  position: relative;
+  z-index: 1;
 }
 
 .content-grid {
   display: grid;
-  grid-template-columns: 1fr 300px;
+  grid-template-columns: 1fr 320px;
   gap: 2rem;
 }
 
 .programme, .inclus {
   background: white;
-  border-radius: 12px;
-  padding: 1.5rem;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+  border: 1px solid #f3f4f6;
 }
 
 .programme h2, .inclus h2 {
-  font-size: 1.2rem;
-  font-weight: 600;
-  margin-bottom: 1rem;
-  color: #1a1a1a;
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: #111827;
+  letter-spacing: -0.5px;
 }
 
 .chapitre-item {
   display: flex;
   align-items: center;
   gap: 1rem;
-  padding: 0.75rem 0;
-  border-bottom: 1px solid #f3f4f6;
-  color: #555;
+  padding: 1rem;
+  border-radius: 10px;
+  margin-bottom: 0.5rem;
+  transition: background 0.2s;
+}
+
+.chapitre-item:hover {
+  background: #f9fafb;
 }
 
 .chapitre-titre {
-  font-weight: 500;
-  font-size: 0.9rem;
-  color: #1a1a1a;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #111827;
 }
 
 .chapitre-duree {
   font-size: 0.8rem;
-  color: #888;
+  color: #6b7280;
+  margin-top: 0.2rem;
 }
 
 .inclus ul {
@@ -134,10 +181,14 @@
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 1rem;
 }
 
 .inclus li {
-  font-size: 0.9rem;
-  color: #444;
+  font-size: 0.95rem;
+  color: #374151;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0;
 }

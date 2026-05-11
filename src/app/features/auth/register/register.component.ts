@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router,RouterLink } from '@angular/router';
@@ -9,7 +9,6 @@ import { AuthService } from '../../../core/services/auth.service';
   imports: [CommonModule,FormsModule,RouterLink],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RegisterComponent {
   nom = '';
@@ -26,6 +25,10 @@ export class RegisterComponent {
   ){}
 
   async onRegister(){
+    if(this.password.length < 6){
+      this.errorMessage = 'Le mot de passe doit au moins contenir 6 caractères';
+      return;
+    }
     this.isLoading = true;
     this.errorMessage='';
     try{

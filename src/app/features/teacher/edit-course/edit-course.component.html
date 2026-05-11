@@ -1,0 +1,213 @@
+<app-navbar></app-navbar>
+
+<div class="create-container">
+  <a routerLink="/teacher/dashboard" class="btn-back">
+    ← Retour au tableau de bord
+  </a>
+
+  <h1>Modifier un cours</h1>
+
+  <div class="form-card">
+    <h2>Informations générales</h2>
+
+    <div class="field">
+      <label>Titre du cours *</label>
+      <input
+        type="text"
+        [(ngModel)]="titre"
+        placeholder="Ex: Introduction à Python"/>
+    </div>
+
+    <div class="field">
+      <label>Description *</label>
+      <textarea
+        [(ngModel)]="description"
+        placeholder="Décrivez votre cours..."
+        rows="4">
+      </textarea>
+    </div>
+
+    <div class="field-row">
+      <div class="field">
+        <label>Catégorie *</label>
+        <select [(ngModel)]="categorie">
+          <option value="">Sélectionner une catégorie</option>
+          @for (cat of categories; track cat) {
+            <option [value]="cat">{{ cat }}</option>
+          }
+        </select>
+      </div>
+      <div class="field">
+        <label>Niveau</label>
+        <select [(ngModel)]="niveau">
+          <option value="">Sélectionner un niveau</option>
+          @for (niv of niveaux; track niv) {
+            <option [value]="niv">{{ niv }}</option>
+          }
+        </select>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Durée totale</label>
+      <input
+        type="text"
+        [(ngModel)]="duree"
+        placeholder="Ex: 12h"/>
+    </div>
+  </div>
+
+  <div class="form-card">
+    <div class="section-header">
+      <h2>Chapitres</h2>
+      <button type="button" (click)="addChapitre()" class="btn-add">
+        + Ajouter un chapitre
+      </button>
+    </div>
+
+    @if (chapitres.length === 0) {
+      <p class="empty">
+        Aucun chapitre ajouté. Cliquez sur le bouton ci-dessus.
+      </p>
+    } @else {
+      @for (chapitre of chapitres; track chapitre.id; let i = $index) {
+        <div class="chapitre-form">
+          <div class="chapitre-header">
+            <h3>Chapitre {{ i + 1 }}</h3>
+            <button type="button" (click)="removeChapitre(i)"
+                    class="btn-remove">✕</button>
+          </div>
+          <div class="field">
+            <label>Titre du chapitre</label>
+            <input
+              type="text"
+              [(ngModel)]="chapitre.titre"
+              placeholder="Ex: Introduction et mise en place"/>
+          </div>
+          <div class="field">
+            <label>Durée</label>
+            <input
+              type="text"
+              [(ngModel)]="chapitre.duree"
+              placeholder="Ex: 30 min"/>
+          </div>
+          <div class="field">
+            <label>URL de la vidéo</label>
+            <input
+              type="text"
+              [(ngModel)]="chapitre.videoUrl"
+              placeholder="https://..."/>
+          </div>
+        </div>
+      }
+    }
+  </div>
+
+  <div class="form-card">
+    <div class="section-header">
+      <h2>Quiz et évaluations</h2>
+      <button type="button" (click)="addQuestion()" class="btn-add">
+        + Ajouter une question
+      </button>
+    </div>
+
+    @if (questions.length === 0) {
+      <p class="empty">Aucune question ajoutée.</p>
+    } @else {
+      @for (question of questions; track question.id; let i = $index) {
+        <div class="question-form">
+          <div class="chapitre-header">
+            <h3>Question {{ i + 1 }}</h3>
+            <button type="button" (click)="removeQuestion(i)"
+                    class="btn-remove">✕</button>
+          </div>
+          <div class="field">
+            <label>Texte de la question</label>
+            <input
+              type="text"
+              [(ngModel)]="question.texte"
+              placeholder="Ex: Qu'est-ce que React ?"/>
+          </div>
+          <div class="field">
+            <label>Choix de réponses</label>
+            @for (choix of question.choix; track $index; let j = $index) {
+              <div class="choix-input">
+                <input
+                  type="radio"
+                  [name]="'bonne-reponse-' + i"
+                  [value]="j"
+                  [(ngModel)]="question.bonneReponse"
+                  title="Bonne réponse"
+                />
+                <input
+                  type="text"
+                  [(ngModel)]="question.choix[j]"
+                  [placeholder]="'Choix ' + (j + 1)"/>
+              </div>
+            }
+            <p class="hint">🔘 Sélectionnez le bouton radio de la bonne réponse</p>
+          </div>
+        </div>
+      }
+    }
+  </div>
+
+  <div class="form-card">
+    <div class="section-header">
+      <h2>Devoirs</h2>
+      <button type="button" (click)="addDevoir()" class="btn-add">
+        + Ajouter un devoir
+      </button>
+    </div>
+
+    @if (devoirs.length === 0) {
+      <p class="empty">Aucun devoir ajouté.</p>
+    } @else {
+      @for (devoir of devoirs; track devoir.id; let i = $index) {
+        <div class="chapitre-form">
+          <div class="chapitre-header">
+            <h3>Devoir {{ i + 1 }}</h3>
+            <button type="button" (click)="removeDevoir(i)"
+                    class="btn-remove">✕</button>
+          </div>
+          <div class="field">
+            <label>Titre du devoir</label>
+            <input
+              type="text"
+              [(ngModel)]="devoir.titre"
+              placeholder="Ex: Projet final - Application Todo"/>
+          </div>
+          <div class="field">
+            <label>Instructions</label>
+            <textarea
+              [(ngModel)]="devoir.instructions"
+              placeholder="Décrivez le travail à faire..."
+              rows="3">
+            </textarea>
+          </div>
+          <div class="field">
+            <label>Date limite</label>
+            <input
+              type="date"
+              [(ngModel)]="devoir.dateLimit"/>
+          </div>
+        </div>
+      }
+    }
+  </div>
+
+  @if (errorMessage) {
+    <p class="error">{{ errorMessage }}</p>
+  }
+
+  <div class="form-actions">
+    <a routerLink="/teacher/dashboard" class="btn-cancel">Annuler</a>
+    <button
+      type="button"
+      (click)="onSubmit()"
+      [disabled]="isSubmitting"
+      class="btn-publish">
+      {{ isSubmitting ? 'Mise à jours...' : 'Mettre à jour le cours' }}
+    </button>
+  </div>
+</div>
